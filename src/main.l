@@ -10,7 +10,30 @@ void yyerror(char *);
 
 %%
 
+[{] { return I; }
 
+[0-9]+[,][0-9]+ {yyerror("INVALIDO");};
+
+[0-9]+([.][0-9]+)? { return N; }
+
+["][a-zA-Z0-9[:space:]]+["] { return S; }
+
+(:) { return TWOP; }
+
+(,) { return C; }
+
+[[] { return IM; }
+
+[]]+ { return FM; }
+
+[}] { return F; }
+
+\n ;
+
+[[:space:]]+ ;
+
+
+. {yyerror("INVALIDO");};
 
 %%
 
